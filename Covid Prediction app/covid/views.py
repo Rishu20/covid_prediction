@@ -1,8 +1,6 @@
 from django.shortcuts import render
-import re
-from django.http import HttpResponse
 import sys
-sys.path.insert(1, 'C:/Users/susha/Programmings/Programs/Django/myapp/covid/covid_ml')
+sys.path.insert(1, '<path to folder>/covid/covid_ml')
 from Ml_Base import *
 
 # Create your views here.
@@ -15,7 +13,6 @@ def result(request):
     dd = request.POST["DD"]
     mm = request.POST["MM"]
     yy = request.POST["YY"]
-    
     year = int(yy)
     month = int(mm)
     day = int(dd)
@@ -49,7 +46,7 @@ def result(request):
         x_Days=[[m]]
         predict = int(model.predict(poly_reg.fit_transform(x_Days)))
         pre = str(predict)
-        Dat = on + " " + dd + dev + mm + dev + yy + " " + bt + " "+ pre
+        Dat = on + " " + dd + dev + mm + dev + yy + " " + bt + " " + pre
         res = Dat
 
     elif b <= 0:
@@ -58,7 +55,6 @@ def result(request):
 
     else:
         predict = ("Sorry invalid input")
-        #res = str(predict)
+        # res = str(predict)
 
-    return render(request, "result.html", {'result':res})
-
+    return render(request, "result.html", {'result': res})
